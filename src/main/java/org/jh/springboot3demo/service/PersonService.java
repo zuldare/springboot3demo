@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface PersonService {
 
-    List<PersonDto> findPeople();
+    List<PersonDto> getPeople();
+
+    PersonDto getPerson(Integer idPerson);
 }
