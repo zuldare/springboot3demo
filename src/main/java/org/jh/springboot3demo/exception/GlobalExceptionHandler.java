@@ -1,6 +1,5 @@
-package org.jh.springboot3demo;
+package org.jh.springboot3demo.exception;
 
-import org.jh.springboot3demo.exception.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
@@ -11,15 +10,14 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException e) {
-        ProblemDetail detail = ProblemDetail.forStatusAndDetail(HttpStatus.ALREADY_REPORTED, e.getMessage());
+        ProblemDetail detail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
         detail.setTitle("Entity not found");
-        detail.setProperty("Entity", e.getEntityName());
-        detail.setProperty("Parameters", e.getParameters());
+        detail.setProperty("entity", e.getEntityName());
+        detail.setProperty("status name", HttpStatus.NOT_FOUND.name());
+        detail.setProperty("parameters", e.getParameters());
 
-
-        return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body(detail);
+        return ResponseEntity.status(detail.getStatus()).body(detail);
     }
 }
