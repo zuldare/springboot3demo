@@ -1,12 +1,12 @@
 package org.jh.springboot3demo.service;
 
-import org.jh.springboot3demo.dto.PersonDto;
+import org.jh.springboot3demo.dto.response.PersonResponseDto;
 
 import java.util.List;
 
 public interface PersonService {
 
-    List<PersonDto> getPeople();
+    List<PersonResponseDto> getPeople();
 
-    PersonDto getPerson(Integer idPerson);
+    PersonResponseDto getPerson(Integer idPerson);
 }

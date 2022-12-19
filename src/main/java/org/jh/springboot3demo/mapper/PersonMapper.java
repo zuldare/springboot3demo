@@ -1,7 +1,7 @@
 package org.jh.springboot3demo.mapper;
 
 import org.jh.springboot3demo.domain.Person;
-import org.jh.springboot3demo.dto.PersonDto;
+import org.jh.springboot3demo.dto.response.PersonResponseDto;
 
 public class PersonMapper {
 
@@ -9,8 +9,8 @@ public class PersonMapper {
         throw new IllegalStateException("Utility class");
     }
 
-    public static PersonDto toDto(Person p) {
-        return PersonDto
+    public static PersonResponseDto toDto(Person p) {
+        return PersonResponseDto
                 .builder()
                 .id(p.getId())
                 .name(p.getName())
@@ -19,7 +19,7 @@ public class PersonMapper {
                 .build();
     }
 
-    public static Person toEntity(PersonDto p) {
+    public static Person toEntity(PersonResponseDto p) {
         return Person
                 .builder()
                 .id(p.getId())

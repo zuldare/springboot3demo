@@ -1,6 +1,6 @@
 package org.jh.springboot3demo.controller;
 
-import org.jh.springboot3demo.dto.PersonDto;
+import org.jh.springboot3demo.dto.response.PersonResponseDto;
 import org.jh.springboot3demo.service.PersonService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,12 +18,12 @@ public class PersonController {
     }
 
     @GetMapping("/people")
-    public List<PersonDto> getPeople() {
+    public List<PersonResponseDto> getPeople() {
         return personService.getPeople();
     }
 
     @GetMapping("/people/{idPerson}")
-    public PersonDto getPerson(@PathVariable("idPerson") Integer idPerson) {
+    public PersonResponseDto getPerson(@PathVariable("idPerson") Integer idPerson) {
         return personService.getPerson(idPerson);
     }
 }

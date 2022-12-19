@@ -2,7 +2,7 @@ package org.jh.springboot3demo.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jh.springboot3demo.domain.Person;
-import org.jh.springboot3demo.dto.PersonDto;
+import org.jh.springboot3demo.dto.response.PersonResponseDto;
 import org.jh.springboot3demo.exception.EntityNotFoundException;
 import org.jh.springboot3demo.mapper.PersonMapper;
 import org.jh.springboot3demo.repository.PersonRepository;
@@ -22,7 +22,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<PersonDto> getPeople() {
+    public List<PersonResponseDto> getPeople() {
         return personRepository.findAll()
                 .stream()
                 .map(PersonMapper::toDto)
@@ -38,7 +38,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public PersonDto getPerson(Integer idPerson) {
+    public PersonResponseDto getPerson(Integer idPerson) {
         return PersonMapper.toDto(personRepository.findById(idPerson).orElseThrow(getCheckedPerson(idPerson)));
     }
 }
